@@ -1,6 +1,10 @@
 import { Sequelize } from "sequelize";
 import { DB_CONFIG } from "./env";
 
+console.log("🔎 ENV KEYS:", Object.keys(process.env));
+console.log("🔎 DATABASE_URL:", process.env.DATABASE_URL);
+console.log("🔎 NODE_ENV:", process.env.NODE_ENV);
+
 const isProduction = process.env.NODE_ENV === "production";
 
 if (isProduction && !process.env.DATABASE_URL) {
