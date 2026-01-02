@@ -3,8 +3,12 @@ import { DB_CONFIG } from "./env";
 
 const isProduction = process.env.NODE_ENV === "production";
 
-export const sequelize = process.env.DATABASE_URL
-  ? new Sequelize(process.env.DATABASE_URL, {
+if (isProduction && !process.env.DATABASE_URL) {
+  throw new Error("❌ DATABASE_URL is missing in production");
+}
+
+export const sequelize = isProduction
+  ? new Sequelize(process.env.DATABASE_URL as string, {
       dialect: "postgres",
       logging: false,
       define: {
@@ -16,6 +20,12 @@ export const sequelize = process.env.DATABASE_URL
           require: true,
           rejectUnauthorized: false,
         },
+      },
+      pool: {
+        max: 5,
+        min: 0,
+        acquire: 30_000,
+        idle: 10_000,
       },
     })
   : new Sequelize(DB_CONFIG.name, DB_CONFIG.user, DB_CONFIG.password, {
