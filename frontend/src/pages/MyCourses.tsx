@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import api from "../utils/axios";
 
 const fetchMyCreatedCourses = async () => {
@@ -13,7 +12,6 @@ export default function MyCourses() {
   const {
     data: myCourses,
     isLoading,
-    isError,
   } = useQuery({
     queryKey: ["my-created-courses"],
     queryFn: fetchMyCreatedCourses,

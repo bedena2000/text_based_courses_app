@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import api from "../utils/axios";
 
 export default function Profile() {

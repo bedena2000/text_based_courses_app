@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import api from "../utils/axios";
 
 const fetchCourseForLearning = async (courseId: string) => {

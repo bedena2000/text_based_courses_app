@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import api from "../utils/axios";
 
 const fetchCourseDetails = async (courseId: string) => {

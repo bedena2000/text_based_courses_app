@@ -8,6 +8,15 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://sprightly-mooncake-cc411a.netlify.app/",
+    ],
+    credentials: true,
+  })
+);
 
 // Existing Routes
 app.use("/api/auth", authRoutes);
