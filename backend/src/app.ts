@@ -6,7 +6,6 @@ import courseRoutes from "./routes/course.routes"; // Import the new routes
 
 const app = express();
 
-app.use(cors());
 app.use(bodyParser.json());
 app.use(
   cors({
