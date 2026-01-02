@@ -9,10 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://sprightly-mooncake-cc411a.netlify.app",
-    ],
+    origin: "https://sprightly-mooncake-cc411a.netlify.app",
     credentials: true,
   })
 );
