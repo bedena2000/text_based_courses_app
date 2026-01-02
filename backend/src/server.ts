@@ -3,19 +3,19 @@ import app from "./app";
 import { initUserModel, User } from "./models/User";
 import { Course, initCourseModel } from "./models/Course";
 import { Step, initStepModel } from "./models/Step";
-import { DB_CONFIG } from "./config/env";
+// Removed DB_CONFIG import if it's not used in this file anymore
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 async function startServer() {
   try {
     await sequelize.authenticate();
+    console.log("✅ Database connected to Supabase!");
 
     initUserModel(sequelize);
     initCourseModel(sequelize);
     initStepModel(sequelize);
 
-  
     User.hasMany(Course, {
       foreignKey: "instructor_id",
       as: "authoredCourses",
@@ -35,11 +35,10 @@ async function startServer() {
       as: "course",
     });
 
-  
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ alter: false });
 
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+    app.listen(Number(PORT), "0.0.0.0", () => {
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   } catch (error) {
     console.error("❌ Database connection failed:", error);
