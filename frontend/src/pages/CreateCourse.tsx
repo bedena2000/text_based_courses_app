@@ -28,8 +28,6 @@ export default function CreateCourse() {
   const mutation = useMutation({
     mutationFn: createCourseRequest,
     onSuccess: (response) => {
-      console.log("Course created:", response);
-
       if (response && response.id) {
         navigate(`/instructor/courses/${response.id}`);
       }
